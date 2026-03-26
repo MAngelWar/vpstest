@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tienda Estilo Microsoft Store</title>
-  <style>
-    /* Reset básico */
+      /* Reset básico */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -17,8 +16,8 @@
       color: #333;
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
+      flex-direction: row;
+      align-items: flex-start;
       padding: 20px;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
@@ -44,6 +43,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      position: fixed;
+      top: 0;
+      left: 250px;
+      right: 20px;
+      height: 60px;
+      z-index: 1001;
     }
     .theme-toggle {
       background: none;
@@ -66,9 +71,14 @@
     .search-bar {
       width: 100%;
       max-width: 1200px;
-      margin-bottom: 25px;
+      margin: 80px 0 25px 0;
       display: flex;
       justify-content: center;
+      position: fixed;
+      top: 60px;
+      left: 250px;
+      right: 20px;
+      z-index: 1000;
     }
     .search-bar input {
       width: 100%;
@@ -90,14 +100,17 @@
     .search-bar input:focus {
       outline: none;
       border-color: #0078d7;
-      box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
+      box-shadow: 0 0 5px rgba(0, 120, 215, 0.8);
     }
     .container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
       gap: 20px;
-      width: 100%;
+      width: calc(100% - 270px);
       max-width: 1200px;
+      margin-left: 250px;
+      padding-top: 120px;
+      padding-bottom: 40px;
     }
     .product {
       background-color: white;
@@ -192,26 +205,94 @@
       background-color: #005a9e;
       box-shadow: 0 4px 15px rgba(0, 90, 158, 0.6);
     }
-    @media (max-width: 480px) {
-      header {
-        font-size: 1.4rem;
-        padding: 1rem 1.5rem;
+    /* Menu lateral */
+    nav.sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 230px;
+      height: 100vh;
+      background-color: #0078d7;
+      box-shadow: 2px 0 8px rgba(0, 120, 215, 0.4);
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      z-index: 1002;
+      border-radius: 0 8px 8px 0;
+    }
+    nav.sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 15px 25px;
+      font-weight: 600;
+      font-size: 1rem;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background-color 0.3s ease;
+      border-left: 4px solid transparent;
+      user-select: none;
+    }
+    nav.sidebar a:hover {
+      background-color: #005a9e;
+      border-left-color: #003f6b;
+    }
+    nav.sidebar a.active {
+      background-color: #004578;
+      border-left-color: #002d4a;
+    }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+        padding: 0;
       }
-      .product img {
-        height: 140px;
+      nav.sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding-top: 0;
+        border-radius: 0;
+        box-shadow: none;
+        flex-direction: row;
+        justify-content: space-around;
       }
-      .product-title {
-        font-size: 1rem;
-      }
-      .product-desc {
-        font-size: 0.85rem;
-      }
-      .product-price {
-        font-size: 1rem;
-      }
-      .btn {
+      nav.sidebar a {
+        padding: 12px 10px;
         font-size: 0.9rem;
-        padding: 8px 0;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+      }
+      nav.sidebar a:hover {
+        background-color: transparent;
+        border-left: none;
+        border-bottom-color: #005a9e;
+      }
+      nav.sidebar a.active {
+        background-color: transparent;
+        border-left: none;
+        border-bottom-color: #004578;
+      }
+      header {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+      }
+      .search-bar {
+        position: relative;
+        top: 0;
+        left: 0;
+        right: 0;
+        margin: 15px 10px 25px 10px;
+        max-width: none;
+      }
+      .container {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+        padding-top: 0;
+        padding-bottom: 40px;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
       }
     }
   </style>
