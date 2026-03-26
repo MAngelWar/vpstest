@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tienda Estática Moderna</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tienda Estilo Microsoft Store</title>
   <style>
-    /* Reset y base */
+    /* Reset básico */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -13,7 +13,7 @@
     }
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+      background-color: #f3f3f3;
       color: #333;
       min-height: 100vh;
       display: flex;
@@ -24,185 +24,214 @@
     header {
       width: 100%;
       max-width: 1200px;
-      background-color: #1e40af;
+      background-color: #0078d7;
       color: white;
       padding: 1.5rem 2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
-      text-align: center;
-      font-weight: 700;
-      font-size: 2rem;
-      letter-spacing: 1.2px;
-      margin-bottom: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 120, 215, 0.4);
+      font-weight: 600;
+      font-size: 1.8rem;
       user-select: none;
       text-transform: uppercase;
-      letter-spacing: 2px;
-      font-family: 'Poppins', sans-serif;
+      letter-spacing: 1.5px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin-bottom: 30px;
+    }
+    .search-bar {
+      width: 100%;
+      max-width: 1200px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: center;
+    }
+    .search-bar input {
+      width: 100%;
+      max-width: 600px;
+      padding: 12px 20px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .search-bar input:focus {
+      outline: none;
+      border-color: #0078d7;
+      box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
     }
     .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
       width: 100%;
       max-width: 1200px;
     }
     .product {
-      background: white;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(30, 64, 175, 0.15);
-      padding: 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       display: flex;
       flex-direction: column;
-      align-items: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      border: 2px solid transparent;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      overflow: hidden;
+      border: 1px solid transparent;
     }
     .product:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 12px 30px rgba(30, 64, 175, 0.3);
-      border-color: #3b82f6;
+      box-shadow: 0 8px 20px rgba(0, 120, 215, 0.3);
+      transform: translateY(-6px);
+      border-color: #0078d7;
     }
     .product img {
       width: 100%;
-      max-width: 260px;
-      border-radius: 16px;
-      margin-bottom: 15px;
-      object-fit: cover;
-      box-shadow: 0 4px 12px rgba(30, 64, 175, 0.2);
+      height: 160px;
+      object-fit: contain;
+      background-color: #f9f9f9;
+      padding: 15px;
       transition: transform 0.3s ease;
     }
     .product:hover img {
       transform: scale(1.05);
     }
-    .product h3 {
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-      color: #1e40af;
-      font-weight: 700;
-      font-family: 'Poppins', sans-serif;
+    .product-info {
+      padding: 15px 20px 25px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .product p {
-      font-size: 1rem;
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0078d7;
+      margin-bottom: 8px;
+      font-family: 'Segoe UI Semibold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .product-desc {
+      font-size: 0.9rem;
       color: #555;
-      text-align: center;
+      flex-grow: 1;
       margin-bottom: 15px;
-      line-height: 1.5;
-      font-family: 'Open Sans', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.3;
     }
-    .price {
+    .product-price {
+      font-size: 1.2rem;
       font-weight: 700;
-      font-size: 1.4rem;
-      color: #ef4444;
-      margin-bottom: 20px;
-      font-family: 'Poppins', sans-serif;
+      color: #333;
+      margin-bottom: 15px;
+      font-family: 'Segoe UI Semibold', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     .btn {
-      background: #1e40af;
+      background-color: #0078d7;
       color: white;
-      padding: 14px 30px;
       border: none;
-      border-radius: 30px;
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-decoration: none;
-      text-align: center;
+      border-radius: 6px;
+      padding: 10px 0;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       width: 100%;
-      max-width: 260px;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
       user-select: none;
-      box-shadow: 0 4px 15px rgba(30, 64, 175, 0.4);
-      font-family: 'Poppins', sans-serif;
+      box-shadow: 0 2px 8px rgba(0, 120, 215, 0.4);
     }
     .btn:hover {
-      background: #3b82f6;
-      box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+      background-color: #005a9e;
+      box-shadow: 0 4px 15px rgba(0, 90, 158, 0.6);
     }
     @media (max-width: 480px) {
       header {
-        font-size: 1.5rem;
-        padding: 1rem;
+        font-size: 1.4rem;
+        padding: 1rem 1.5rem;
+      }
+      .product img {
+        height: 140px;
+      }
+      .product-title {
+        font-size: 1rem;
+      }
+      .product-desc {
+        font-size: 0.85rem;
+      }
+      .product-price {
+        font-size: 1rem;
       }
       .btn {
-        padding: 12px 25px;
-        font-size: 1rem;
+        font-size: 0.9rem;
+        padding: 8px 0;
       }
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header>
-    Mi Tienda Moderna
-  </header>
+  <header>Mi Tienda Estilo Microsoft Store</header>
+
+  <div class="search-bar">
+    <input type="search" placeholder="Buscar productos..." aria-label="Buscar productos" />
+  </div>
 
   <div class="container">
     <div class="product">
-      <img src="assets/img/prod1.png" alt="Producto 1">
-      <h3>Producto 1</h3>
-      <p>Descripción moderna y atractiva del producto 1.</p>
-      <div class="price">$20.00</div>
-      <a href="#" class="btn">Comprar</a>
+      <img src="assets/img/prod1.png" alt="Producto 1" />
+      <div class="product-info">
+        <h3 class="product-title">Producto 1</h3>
+        <p class="product-desc">Descripción clara y moderna del producto 1.</p>
+        <div class="product-price">$20.00</div>
+        <button class="btn">Comprar</button>
+      </div>
     </div>
 
     <div class="product">
-      <img src="assets/img/prod2.png" alt="Producto 2">
-      <h3>Producto 2</h3>
-      <p>Descripción moderna y atractiva del producto 2.</p>
-      <div class="price">$35.00</div>
-      <a href="#" class="btn">Comprar</a>
+      <img src="assets/img/prod2.png" alt="Producto 2" />
+      <div class="product-info">
+        <h3 class="product-title">Producto 2</h3>
+        <p class="product-desc">Descripción clara y moderna del producto 2.</p>
+        <div class="product-price">$35.00</div>
+        <button class="btn">Comprar</button>
+      </div>
     </div>
 
     <div class="product">
-      <img src="assets/img/prod3.png" alt="Producto 3">
-      <h3>Producto 3</h3>
-      <p>Descripción moderna y atractiva del producto 3.</p>
-      <div class="price">$50.00</div>
-      <a href="#" class="btn">Comprar</a>
+      <img src="assets/img/prod3.png" alt="Producto 3" />
+      <div class="product-info">
+        <h3 class="product-title">Producto 3</h3>
+        <p class="product-desc">Descripción clara y moderna del producto 3.</p>
+        <div class="product-price">$50.00</div>
+        <button class="btn">Comprar</button>
+      </div>
     </div>
 
     <div class="product">
-      <img src="assets/img/prod4.png" alt="Producto 4">
-      <h3>Producto 4</h3>
-      <p>Descripción moderna y atractiva del producto 4.</p>
-      <div class="price">$45.00</div>
-      <a href="#" class="btn">Comprar</a>
+      <img src="assets/img/prod4.png" alt="Producto 4" />
+      <div class="product-info">
+        <h3 class="product-title">Producto 4</h3>
+        <p class="product-desc">Descripción clara y moderna del producto 4.</p>
+        <div class="product-price">$45.00</div>
+        <button class="btn">Comprar</button>
+      </div>
     </div>
 
     <div class="product">
-      <img src="assets/img/prod5.png" alt="Producto 5">
-      <h3>Producto 5</h3>
-      <p>Descripción moderna y atractiva del producto 5.</p>
-      <div class="price">$60.00</div>
-      <a href="#" class="btn">Comprar</a>
+      <img src="assets/img/prod5.png" alt="Producto 5" />
+      <div class="product-info">
+        <h3 class="product-title">Producto 5</h3>
+        <p class="product-desc">Descripción clara y moderna del producto 5.</p>
+        <div class="product-price">$60.00</div>
+        <button class="btn">Comprar</button>
+      </div>
     </div>
 
     <div class="product">
-      <img src="assets/img/prod6.png" alt="Producto 6">
-      <h3>Producto 6</h3>
-      <p>Descripción moderna y atractiva del producto 6.</p>
-      <div class="price">$55.00</div>
-      <a href="#" class="btn">Comprar</a>
-    </div>
-  </div>
-      <a href="#" class="btn">Comprar</a>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/260" alt="Producto 2">
-      <h3>Producto 2</h3>
-      <p>Descripción breve del producto con un toque moderno y atractivo.</p>
-      <div class="price">$35.00</div>
-      <a href="#" class="btn">Comprar</a>
-    </div>
-
-    <div class="product">
-      <img src="https://via.placeholder.com/260" alt="Producto 3">
-      <h3>Producto 3</h3>
-      <p>Descripción breve del producto con un toque moderno y atractivo.</p>
-      <div class="price">$50.00</div>
-      <a href="#" class="btn">Comprar</a>
+      <img src="assets/img/prod6.png" alt="Producto 6" />
+      <div class="product-info">
+        <h3 class="product-title">Producto 6</h3>
+        <p class="product-desc">Descripción clara y moderna del producto 6.</p>
+        <div class="product-price">$55.00</div>
+        <button class="btn">Comprar</button>
+      </div>
     </div>
   </div>
 </body>
